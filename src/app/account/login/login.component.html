@@ -1,0 +1,36 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Login</h5>
+        <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+          <div class="form-group">
+            <label for="txtEmailId">Email Id</label>
+            
+            <input type="email" class="form-control" id="txtEmailId" name="txtEmailId" 
+            [(ngModel)]="model.Email" #txtEmail="ngModel" required  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+           
+            <small *ngIf="txtEmail.invalid && txtEmail.errors.required && (txtEmail.touched || loginForm.submitted)"
+              class="label-error-message form-text text-muted"> Email is required </small>
+             
+              <small *ngIf="txtEmail.invalid && txtEmail.errors.pattern && (txtEmail.touched || loginForm.submitted)"
+              class="label-error-message form-text text-muted"> Invalid email address</small>
+
+          </div>
+
+          <div class="form-group">
+            <label for="txtPassword">Password</label>
+            <input type="password" class="form-control" id="txtPassword" name="txtPassword" [(ngModel)]="model.Password"
+            #txtPassword="ngModel" required />
+              <small *ngIf="txtPassword.invalid && txtPassword.errors.required && (txtPassword.touched || loginForm.submitted)"
+              class="label-error-message form-text text-muted"> Password is required </small>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-raised" [disabled]="submitted">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
