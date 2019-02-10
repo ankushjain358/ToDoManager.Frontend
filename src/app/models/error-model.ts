@@ -1,10 +1,12 @@
 export class ErrorModel {
 
     public statusCode: number;
-    public message: string;
+    public errorMessage: string;
+    public errors: string[]
 
-    constructor(statusCode: number, message: string) {
+    constructor(statusCode: number, message: string, errors: string[]) {
         this.statusCode = statusCode;
-        this.message = message;
+        this.errorMessage = message;
+        this.errors= errors;
     }
 }

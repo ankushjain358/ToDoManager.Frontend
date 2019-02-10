@@ -6,10 +6,11 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AccountLayoutComponent } from './account/account-layout/account-layout.component';
-import { UserLayoutComponent } from './user/user-layout/user-layout.component';
-import { LoginComponent } from './account/login/login.component';
-import { RegisterComponent } from './account/register/register.component';
+import { AccountLayoutComponent } from './components/account/account-layout/account-layout.component';
+import { UserLayoutComponent } from './components/user/user-layout/user-layout.component';
+import { LoginComponent } from './components/account/login/login.component';
+import { RegisterComponent } from './components/account/register/register.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RegisterComponent } from './account/register/register.component';
     AccountLayoutComponent,
     UserLayoutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

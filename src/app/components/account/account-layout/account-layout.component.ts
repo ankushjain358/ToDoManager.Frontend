@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppConstants } from '../../utility/app.constants'
+import { AppConstants } from '../../../utility/app.constants'
 
 @Component({
   selector: 'app-account-layout',

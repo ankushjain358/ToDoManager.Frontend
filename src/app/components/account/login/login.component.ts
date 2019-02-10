@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from "@angular/router"
 
-import { LoginModel } from './../../models/login-model'
+import { LoginModel } from './../../../models/login-model'
 import { NgForm } from '@angular/forms';
-import { AccountService } from './../../services/account.service';
+import { AccountService } from './../../../services/account.service';
 import { LoginResponseModel } from 'src/app/models/login-response-model';
-import { ErrorModel } from './../../models/error-model';
+import { ErrorModel } from './../../../models/error-model';
 
 @Component({
   selector: 'app-login',
@@ -19,10 +19,15 @@ export class LoginComponent implements OnInit {
     // this.model = new Login();
   }
 
+  error: ErrorModel;
   model: LoginModel;
-  submitted: boolean
+  submitted: boolean;
 
   onSubmit(loginForm: NgForm) {
+    
+    //to clear previously visible errors
+    this.error = null;
+
     if (loginForm.valid) {
 
       this.submitted = true;
@@ -31,6 +36,7 @@ export class LoginComponent implements OnInit {
       var subscription = this.accountService.login(this.model).subscribe((response: LoginResponseModel) => {
         this.router.navigate(['user']);
       }, (error: ErrorModel) => {
+        this.error = error;
       });
 
       subscription.add(() => {
