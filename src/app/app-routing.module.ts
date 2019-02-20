@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/account/register/register.compon
 
 import { UserLayoutComponent } from './components/user/user-layout/user-layout.component';
 import { TaskListComponent } from './components/user/task-list/task-list.component';
+import { CreateTaskListComponent } from './components/user/create-task-list/create-task-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/account/login', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
     path: 'user', component: UserLayoutComponent,
     children: [
       { path: '', redirectTo: 'task-list', pathMatch: 'full' },
-      { path: 'task-list', component: TaskListComponent }
+      { path: 'task-list', component: TaskListComponent },
+      { path: 'task-list/create', component: CreateTaskListComponent }
     ]
   }
 ];

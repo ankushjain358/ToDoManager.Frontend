@@ -4,6 +4,7 @@ import { throwError } from 'rxjs';
 import { ErrorModel } from './../models/error-model';
 import { User } from '@app/models/user-model';
 import { AppConstants } from './app.constants';
+import { LoginResponseModel } from '@app/models/login-response-model'
 
 @Injectable({
     providedIn: 'root'
@@ -29,8 +30,15 @@ export class ServiceUtility {
     public getCurrentUser(): User {
          if(localStorage.getItem(AppConstants.LocalStorageKey.User)){
            var currentUser=  JSON.parse(localStorage.getItem(AppConstants.LocalStorageKey.User))
-           return <User>currentUser;
+           // use of Type Assertion 
+           return (<User>currentUser);
          }
          return null;
     }
+
+    public setUserInLocalStorage (response: LoginResponseModel)  {
+        localStorage.setItem(AppConstants.LocalStorageKey.User, JSON.stringify(response));
+    }
+
+
 }
