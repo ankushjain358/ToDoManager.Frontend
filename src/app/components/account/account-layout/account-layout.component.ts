@@ -8,10 +8,9 @@ import { AppConstants } from '../../../utility/app.constants'
 })
 export class AccountLayoutComponent implements OnInit {
 
-   applicationName: string 
+  public applicationName: string 
 
   constructor() { 
-
     this.applicationName = AppConstants.AppName;
   }
 

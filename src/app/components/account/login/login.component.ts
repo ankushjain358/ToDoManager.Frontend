@@ -5,8 +5,10 @@ import { Router } from "@angular/router"
 import { LoginModel } from './../../../models/login-model'
 import { NgForm } from '@angular/forms';
 import { AccountService } from './../../../services/account.service';
+import { AlertService } from '@app/services/alert.service';
 import { LoginResponseModel } from 'src/app/models/login-response-model';
-import { ErrorModel } from './../../../models/error-model';
+import { ErrorModel } from '@app/models/error-model'
+import { AppConstants } from '@app/utility/app.constants';
 
 @Component({
   selector: 'app-login',
@@ -15,29 +17,29 @@ import { ErrorModel } from './../../../models/error-model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private accountService: AccountService, private spinner: NgxSpinnerService, private router: Router) {
-    // this.model = new Login();
+  constructor(private accountService: AccountService, private spinner: NgxSpinnerService, private router: Router,
+    private alertService: AlertService) {
   }
-
   error: ErrorModel;
   model: LoginModel;
   submitted: boolean;
 
   onSubmit(loginForm: NgForm) {
-    
-    //to clear previously visible errors
-    this.error = null;
 
     if (loginForm.valid) {
 
       this.submitted = true;
       this.spinner.show();
 
-      var subscription = this.accountService.login(this.model).subscribe((response: LoginResponseModel) => {
-        this.router.navigate(['user']);
-      }, (error: ErrorModel) => {
-        this.error = error;
-      });
+      var subscription = this.accountService.login(this.model)
+        .subscribe((response: LoginResponseModel) => {
+          //save user in localstorage
+          localStorage.setItem(AppConstants.LocalStorageKey.User, JSON.stringify(response));
+          this.router.navigate(['user']);
+
+        }, (error: ErrorModel) => {
+            this.alertService.error(error);
+          });
 
       subscription.add(() => {
         this.submitted = false;

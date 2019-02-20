@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConstants } from '../../../utility/app.constants'
 
 @Component({
   selector: 'app-user-layout',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLayoutComponent implements OnInit {
 
-  constructor() { }
+  public applicationName: string 
+
+  constructor() { 
+    this.applicationName = AppConstants.AppName;
+  }
 
   ngOnInit() {
   }

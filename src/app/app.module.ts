@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,11 @@ import { UserLayoutComponent } from './components/user/user-layout/user-layout.c
 import { LoginComponent } from './components/account/login/login.component';
 import { RegisterComponent } from './components/account/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
+import { TaskListComponent } from './components/user/task-list/task-list.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { ErrorInterceptor } from '@app/utility/error-interceptor';
+import { JwtInterceptor } from '@app/utility/jwt-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +24,9 @@ import { ErrorComponent } from './components/error/error.component';
     UserLayoutComponent,
     LoginComponent,
     RegisterComponent,
-    ErrorComponent
+    ErrorComponent,
+    TaskListComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,10 @@ import { ErrorComponent } from './components/error/error.component';
     FormsModule,
     NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

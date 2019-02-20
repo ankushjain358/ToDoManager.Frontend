@@ -1,0 +1,17 @@
+<div *ngIf="alertModel">
+  <!--Success Alert-->
+  <div *ngIf="alertModel.success && !alertModel.useToastr">
+      <div class="alert alert-success" role="alert">
+          <strong>Success!</strong> {{alertModel.message}}
+       </div>
+  </div>
+  <!--Error Alert-->
+  <div *ngIf="!alertModel.success" class="alert alert-danger" role="alert">
+    <strong>Error!</strong> {{alertModel.error.errorMessage}}
+    <div *ngIf="alertModel.error.errors">
+      <ul>
+        <li *ngFor="let item of alertModel.error.errors">{{item}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
