@@ -22,6 +22,14 @@ export class ServiceUtility {
         if (errorModel && errorModel.statusCode) {
             return throwError(errorModel as ErrorModel);
         }
+        else if (error.status == 0){
+
+            let errorList:string[] =[
+                "You are not connected with internet.",
+                "The internet resource you are trying to access is currently down."
+            ];
+            return throwError(new ErrorModel(500, "Request failed due to following reasons:", errorList));
+        }
         else{
             return throwError(new ErrorModel(500, "Something bad happened; please try again later.", null));
         }
