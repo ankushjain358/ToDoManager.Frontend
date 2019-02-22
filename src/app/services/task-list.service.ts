@@ -15,4 +15,8 @@ export class TaskListService {
   public getTaskList(userId: number): Observable<TaskListModel[]>{
     return this.http.get<TaskListModel[]>(AppConstants.TaskListAPIUrl+'/'+userId, { headers: this.serviceUtility.getPostRequestHeaders() });
   }
+
+  public createTaskList(taskListModel: TaskListModel):Observable<any>{
+    return this.http.post(AppConstants.CreateTaskListAPIUrl,taskListModel,{ headers: this.serviceUtility.getPostRequestHeaders() } );
+  }
 }

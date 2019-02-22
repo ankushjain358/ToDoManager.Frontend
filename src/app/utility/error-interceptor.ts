@@ -10,6 +10,9 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private serviceUtility: ServiceUtility) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError(this.serviceUtility.handleError));
+        // return next.handle(request).pipe(catchError(this.serviceUtility.handleHTTPErrors));
+
+        return next.handle(request).pipe(catchError(error => this.serviceUtility.handleHTTPErrors(error)));
+
     }
 }

@@ -16,6 +16,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { ErrorInterceptor } from '@app/utility/error-interceptor';
 import { JwtInterceptor } from '@app/utility/jwt-interceptor';
 import { CreateTaskListComponent } from './components/user/create-task-list/create-task-list.component';
+import { TaskListDetailComponent } from './components/user/task-list-detail/task-list-detail.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CreateTaskListComponent } from './components/user/create-task-list/crea
     ErrorComponent,
     TaskListComponent,
     AlertComponent,
-    CreateTaskListComponent
+    CreateTaskListComponent,
+    TaskListDetailComponent
   ],
   imports: [
     BrowserModule,

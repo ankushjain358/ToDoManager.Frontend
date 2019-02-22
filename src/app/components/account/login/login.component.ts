@@ -33,10 +33,13 @@ export class LoginComponent implements OnInit {
 
       var subscription = this.accountService.login(this.model)
         .subscribe((response: LoginResponseModel) => {
+        
           // 1. save user in localstorage
           this.serviceUtility.setUserInLocalStorage(response);
           // 2. redirect to user page
           this.router.navigate(['user']);
+          // 3. hide the spinner
+          this.spinner.hide();
 
         }, (error: ErrorModel) => {
             this.alertService.error(error);

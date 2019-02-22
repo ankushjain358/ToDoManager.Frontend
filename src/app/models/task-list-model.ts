@@ -1,5 +1,5 @@
 export class TaskListModel {
     id: number;
-    userId: string;
+    userId: number;
     listName: string;
 }
