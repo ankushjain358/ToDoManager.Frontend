@@ -11,12 +11,13 @@ import { UserLayoutComponent } from './components/user/user-layout/user-layout.c
 import { LoginComponent } from './components/account/login/login.component';
 import { RegisterComponent } from './components/account/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
-import { TaskListComponent } from './components/user/task-list/task-list.component';
+import { CategoryComponent } from './components/user/category/category.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ErrorInterceptor } from '@app/utility/error-interceptor';
 import { JwtInterceptor } from '@app/utility/jwt-interceptor';
-import { CreateTaskListComponent } from './components/user/create-task-list/create-task-list.component';
-import { TaskListDetailComponent } from './components/user/task-list-detail/task-list-detail.component';
+import { CreateCategoryComponent } from './components/user/create-category/create-category.component';
+import { CategoryDetailComponent } from './components/user/category-detail/category-detail.component';
+import { CreateTaskComponent } from './components/user/create-task/create-task.component';
 
 
 @NgModule({
@@ -27,10 +28,11 @@ import { TaskListDetailComponent } from './components/user/task-list-detail/task
     LoginComponent,
     RegisterComponent,
     ErrorComponent,
-    TaskListComponent,
+    CategoryComponent,
     AlertComponent,
-    CreateTaskListComponent,
-    TaskListDetailComponent
+    CreateCategoryComponent,
+    CategoryDetailComponent,
+    CreateTaskComponent
   ],
   imports: [
     BrowserModule,

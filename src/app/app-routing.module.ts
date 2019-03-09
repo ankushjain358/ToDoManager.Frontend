@@ -6,9 +6,10 @@ import { LoginComponent } from './components/account/login/login.component';
 import { RegisterComponent } from './components/account/register/register.component';
 
 import { UserLayoutComponent } from './components/user/user-layout/user-layout.component';
-import { TaskListComponent } from './components/user/task-list/task-list.component';
-import { CreateTaskListComponent } from './components/user/create-task-list/create-task-list.component';
-import { TaskListDetailComponent } from './components/user/task-list-detail/task-list-detail.component';
+import { CategoryComponent } from './components/user/category/category.component';
+import { CreateCategoryComponent } from './components/user/create-category/create-category.component';
+import { CategoryDetailComponent } from './components/user/category-detail/category-detail.component';
+import { CreateTaskComponent } from './components/user/create-task/create-task.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/account/login', pathMatch: 'full' },
@@ -23,10 +24,12 @@ const routes: Routes = [
   {
     path: 'user', component: UserLayoutComponent,
     children: [
-      { path: '', redirectTo: 'task-list', pathMatch: 'full' },
-      { path: 'task-list', component: TaskListComponent },
-      { path: 'task-list/create', component: CreateTaskListComponent },
-      { path: 'task-list/detail/:id', component: TaskListDetailComponent }
+      { path: '', redirectTo: 'category', pathMatch: 'full' },
+      { path: 'category', component: CategoryComponent },
+      { path: 'category/create', component: CreateCategoryComponent },
+      { path: 'category/detail/:id', component: CategoryDetailComponent },
+      { path: 'category/new-task', component: CreateTaskComponent },
+      // { path: 'category/edit-task', component: CreateTaskComponent }
     ]
   }
 ];

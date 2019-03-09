@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-12 mb-3">
+      <a class="btn btn-success float-right" routerLink="/user/category/detail/{{newItem.categoryId}}"> <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Back to {{categoryName}}</a>
+    </div>
+    <div class="col-md-12 mb-3">
+      <form novalidate #createTaskForm="ngForm"  (ngSubmit)="onSubmit(createTaskForm)">
+        <div class="form-group">
+          <label for="txtTitle">Enter Task Name</label>
+          <input type="text" class="form-control" id="txtTitle" name="txtTitle" placeholder="Enter task name" 
+          [(ngModel)]="newItem.title" #txtTitle="ngModel" required />
+          
+          <small *ngIf="txtTitle.invalid && txtTitle.errors.required && (txtTitle.touched || createTaskForm.submitted)"
+                class="label-error-message form-text text-muted">Please enter task name</small>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+      </form>
+    </div>
+  </div>

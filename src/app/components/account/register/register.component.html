@@ -1,3 +1,44 @@
-<p>
-  register works!
-</p>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+    
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Register</h5>
+          <form novalidate #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="form-group">
+              <label for="txtFullname">Full Name</label>
+              <input type="text" class="form-control" id="txtFullname" name="txtFullname" [(ngModel)]="model.fullName"
+              #txtFullname="ngModel" required />
+                <small *ngIf="txtFullname.invalid && txtFullname.errors.required && (txtFullname.touched || registerForm.submitted)"
+                class="label-error-message form-text text-muted"> Fullname is required </small>
+            </div>
+
+            <div class="form-group">
+              <label for="txtEmailId">Email Id</label>
+              <input type="email" class="form-control" id="txtEmailId" name="txtEmailId" 
+              [(ngModel)]="model.email" #txtEmail="ngModel" required  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+             
+              <small *ngIf="txtEmail.invalid && txtEmail.errors.required && (txtEmail.touched || registerForm.submitted)"
+                class="label-error-message form-text text-muted"> Email is required </small>
+               
+                <small *ngIf="txtEmail.invalid && txtEmail.errors.pattern && (txtEmail.touched || registerForm.submitted)"
+                class="label-error-message form-text text-muted"> Invalid email address</small>
+            </div>
+  
+            <div class="form-group">
+              <label for="txtPassword">Password</label>
+              <input type="password" class="form-control" id="txtPassword" name="txtPassword" [(ngModel)]="model.password"
+              #txtPassword="ngModel" required />
+                <small *ngIf="txtPassword.invalid && txtPassword.errors.required && (txtPassword.touched || registerForm.submitted)"
+                class="label-error-message form-text text-muted"> Password is required </small>
+            </div>
+  
+            <div class="form-group">
+              <a routerLink="/account/login">Click here to Login</a>
+              <button type="submit" class="btn btn-primary btn-raised float-right">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

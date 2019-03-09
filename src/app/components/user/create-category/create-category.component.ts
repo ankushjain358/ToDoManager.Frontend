@@ -4,26 +4,26 @@ import { Router } from "@angular/router"
 import { NgForm } from '@angular/forms';
 
 import { AlertService } from '@app/services/alert.service';
-import { TaskListService } from '@app/services/task-list.service';
+import { CategoryService } from '@app/services/category.service';
 import { ServiceUtility } from '@app/utility/service-utility';
-import { TaskListModel } from '@app/models/task-list-model'
+import { CategoryModel } from '@app/models/category-model'
 import { ErrorModel } from '@app/models/error-model'
 
 
 @Component({
-  selector: 'app-create-task-list',
-  templateUrl: './create-task-list.component.html',
-  styleUrls: ['./create-task-list.component.scss']
+  selector: 'app-create-category',
+  templateUrl: './create-category.component.html',
+  styleUrls: ['./create-category.component.scss']
 })
-export class CreateTaskListComponent implements OnInit {
+export class CreateCategoryComponent implements OnInit {
 
   constructor(private spinner: NgxSpinnerService, private router: Router,
-    private alertService: AlertService, private serviceUtility: ServiceUtility, private taskListService:TaskListService) { }
+    private alertService: AlertService, private serviceUtility: ServiceUtility, private categoryService:CategoryService) { }
 
-  newItem: TaskListModel;
+  newItem: CategoryModel;
 
   ngOnInit() {
-    this.newItem = {} as TaskListModel;
+    this.newItem = {} as CategoryModel;
   }
 
   onSubmit(appForm: NgForm) {
@@ -31,13 +31,16 @@ export class CreateTaskListComponent implements OnInit {
     if (appForm.valid) {
       this.spinner.show();
 
-      var subscription = this.taskListService.createTaskList(this.newItem)
+      var subscription = this.categoryService.createCategory(this.newItem)
         .subscribe(() => {
       
           // 1. redirect to user page
-          this.router.navigate(['/user/task-list']);
+          this.router.navigate(['/user/category']);
           // 2. hide the spinner
           this.spinner.hide();
+          // 3. show success notification
+          this.alertService.success("Category has been added successfully.")
+
 
         }, (error: ErrorModel) => {
             this.alertService.error(error);

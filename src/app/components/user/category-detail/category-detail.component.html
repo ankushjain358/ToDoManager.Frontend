@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-12 mb-3">
+    <a class="btn btn-success float-right" routerLink="/user/category"> <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Back to My Categories</a>
+  </div>
+  <hr />
+  <div class="col-md-12 mb-3">
+      <!-- Nav tabs -->
+      <ul class="nav nav-pills" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="active-tab" data-toggle="tab" href="#active" role="tab" aria-controls="active" aria-selected="true">Active Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed Tasks</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content mt-2">
+        <div class="tab-pane active" id="active" role="tabpanel" aria-labelledby="active-tab">
+          
+          <!-- Start Pending Tasks -->
+          <div *ngIf="!pendingTasks || pendingTasks.length === 0">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  No active task found.
+                </li>
+              </ul>
+          </div>
+          <div *ngIf="pendingTasks && pendingTasks.length > 0">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let item of pendingTasks">
+                <a>{{item.title}}</a>
+              </li>
+            </ul>
+          </div>
+         <!-- End Pending Tasks -->
+
+        </div>
+
+        <div class="tab-pane" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+          
+          <!-- Start Completed Tasks -->
+          <div *ngIf="!completedTasks || completedTasks.length === 0">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  No completed task found.
+                </li>
+              </ul>
+          </div>
+          <div *ngIf="completedTasks && completedTasks.length > 0">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let item of completedTasks">
+                <a>{{item.title}}</a>
+              </li>
+            </ul>
+          </div>
+          <!-- End Completed Tasks -->
+
+        </div>
+      </div>
+    
+    <a class="btn btn-success btn-block add-new-task mt-3" style="color:white" (click)="addNewTask()"><i class="fa fa-plus mr-2"></i>Add New Task</a>
+
+  </div>
+</div>
