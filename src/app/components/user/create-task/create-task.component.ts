@@ -9,6 +9,7 @@ import { AlertService } from '@app/services/alert.service';
 import { TaskService } from '@app/services/task.service';
 import { ServiceUtility } from '@app/utility/service-utility';
 import { ErrorModel } from '@app/models/error-model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-task',
@@ -30,6 +31,10 @@ export class CreateTaskComponent implements OnInit {
     if (this.dataSharingService.categoryId) {
       this.categoryName = this.dataSharingService.categoryName;
       this.newItem.categoryId = this.dataSharingService.categoryId;
+
+      if(this.dataSharingService.taskItem != null){
+        this.newItem = this.dataSharingService.taskItem;
+      }
     }
     else {
       this.serviceUtility.triggerLogout();
@@ -37,19 +42,20 @@ export class CreateTaskComponent implements OnInit {
   }
 
   onSubmit(appForm: NgForm) {
-  debugger
     if (appForm.valid) {
-      this.spinner.show();
+    
+     this.spinner.show();
 
-      var subscription = this.taskService.createTask(this.newItem)
-        .subscribe(() => {
+     let requestObservable = this.newItem.id > 0 ? this.taskService.updateTask(this.newItem) : this.taskService.createTask(this.newItem);
+
+     let subscription = requestObservable.subscribe(() => {
       
           // 1. redirect to category detail page
           this.router.navigate(['/user/category/detail/'+this.newItem.categoryId]);
           // 2. hide the spinner
           this.spinner.hide();
           // 3. show success notification
-          this.alertService.success("Task has been added successfully.")
+          this.alertService.successNotification("Task has been added successfully.")
 
 
         }, (error: ErrorModel) => {
@@ -58,9 +64,7 @@ export class CreateTaskComponent implements OnInit {
 
       subscription.add(() => {
         this.spinner.hide();
-      })
-
-      setTimeout(() => this.spinner.hide(), 3000);
+      });
     }
   }
 }

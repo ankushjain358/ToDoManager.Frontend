@@ -3,6 +3,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import  {ErrorModel} from '@app/models/error-model'
 import {AlertModel} from '@app/models/alert-model'
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({
    providedIn: 'root'
@@ -11,7 +12,7 @@ export class AlertService {
     private subject = new Subject<any>();
     private keepAfterNavigationChange = false;
 
-    constructor(private router: Router) {
+    constructor(private router: Router,private notifierService: NotifierService ) {
         // clear alert message on route change
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
@@ -28,7 +29,7 @@ export class AlertService {
 
     success(message: string, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
-      this.subject.next(new AlertModel(true, message, null, false));
+        this.subject.next(new AlertModel(true, message, null, false));
     }
 
     error(errorModel: ErrorModel, keepAfterNavigationChange = false) {
@@ -39,6 +40,10 @@ export class AlertService {
 
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         this.subject.next(new AlertModel(false, null, errorModel, false));
+    }
+
+    successNotification(message: string){
+        this.notifierService.notify( 'success', message );
     }
 
   getMessage(): Observable<AlertModel> {

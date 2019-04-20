@@ -1,12 +1,30 @@
 <div class="row">
   <div class="col-md-12 mb-3">
-    <a class="btn btn-success float-right" routerLink="/user/category/create"> <i class="fa fa-plus mr-2" aria-hidden="true"></i> Create New Category</a>
+    <a class="btn btn-success float-right" (click)="onAddCategoryClick()" href="javascript:void(0);"> <i class="fa fa-plus mr-2" aria-hidden="true"></i> Create New Category</a>
   </div>
   <div class="col-md-12 mb-3">
     <h2 class="mb-3">My Categories</h2>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of categoryList">
-        <a routerLink="/user/category/detail/{{item.id}}">{{item.name}}</a>
+      <li class="list-group-item category-item" *ngFor="let item of categoryList">
+        <a class="category-link text-ellipsis mr-3" routerLink="/user/category/detail/{{item.id}}">{{item.name}}</a>
+        <!-- <span class="badge badge-pill badge-success mr-2">Completed {{item.completedTaskCount}}</span>
+        <span class="badge badge-pill badge-danger mr-2">Pending {{item.pendingTaskCount}}</span> -->
+        <a (click)="onEditCategoryClick(item)" href="javascript:void(0);"><i class="fa fa-edit mr-3" aria-hidden="true"></i></a>
+        <a (click)="onDeleteCategoryClick(item)" href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i></a>
+    
+        <!-- <div>
+          <span class="badge badge-pill badge-success mr-3">Completed {{item.completedTaskCount}}</span>
+          <span class="badge badge-pill badge-danger mr-3">Pending {{item.pendingTaskCount}}</span>
+        </div>
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+             Action
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="onEditCategoryClick(item)" href="javascript:void(0);"><i class="fa fa-edit mr-2" aria-hidden="true"></i>Edit</a>
+              <a class="dropdown-item" (click)="onDeleteCategoryClick(item)" href="javascript:void(0);"><i class="fa fa-trash mr-2" aria-hidden="true"></i>Delete</a>
+            </div>
+        </div> -->
       </li>
     </ul>
   </div>

@@ -4,13 +4,21 @@
   </div>
   <hr />
   <div class="col-md-12 mb-3">
+      <h3 class="mb-3">{{categoryDetail.name}}</h3>
+      
       <!-- Nav tabs -->
       <ul class="nav nav-pills" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="active-tab" data-toggle="tab" href="#active" role="tab" aria-controls="active" aria-selected="true">Active Tasks</a>
+          <a class="nav-link active" id="active-tab" data-toggle="tab" href="#active" role="tab" aria-controls="active" aria-selected="true">
+            Active Tasks
+            <span class="badge badge-light" [textContent]="pendingTasks?.length"></span> 
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed Tasks</a>
+          <a class="nav-link" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">
+            Completed Tasks
+            <span class="badge badge-light" [textContent]="completedTasks?.length"></span>
+          </a>
         </li>
       </ul>
 
@@ -28,8 +36,13 @@
           </div>
           <div *ngIf="pendingTasks && pendingTasks.length > 0">
             <ul class="list-group">
-              <li class="list-group-item" *ngFor="let item of pendingTasks">
-                <a>{{item.title}}</a>
+              <li class="list-group-item pending-task" *ngFor="let item of pendingTasks">
+                <div class="form-check form-check-inline">
+                  <input type="checkbox" class="form-check-input" (change)="onCheckboxChange($event, item)" />
+                </div>
+                <a class="task-link text-ellipsis mr-3">{{item.title}}</a>
+                <a (click)="onEditTaskClick(item)" href="javascript:void(0);" class="mr-4"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                <a (click)="onDeleteTaskClick(item)" href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i></a>
               </li>
             </ul>
           </div>
@@ -49,8 +62,11 @@
           </div>
           <div *ngIf="completedTasks && completedTasks.length > 0">
             <ul class="list-group">
-              <li class="list-group-item" *ngFor="let item of completedTasks">
-                <a>{{item.title}}</a>
+              <li class="list-group-item completed-task" *ngFor="let item of completedTasks">
+                <a class="task-link text-ellipsis mr-3">{{item.title}}</a>
+                <a href="javascript:void(0);" (click)="onUndoClick(item)" class="mr-4" >Undo</a>
+                <a (click)="onEditTaskClick(item)" href="javascript:void(0);" class="mr-4"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                <a (click)="onDeleteTaskClick(item)" href="javascript:void(0);"><i class="fa fa-trash" aria-hidden="true"></i></a>
               </li>
             </ul>
           </div>

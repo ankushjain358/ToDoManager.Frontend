@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
           // 2. hide the spinner
           this.spinner.hide();
           // 3. show success notification
-          this.alertService.success("Congratulation!! Your account has been created successfuly.")
+          this.alertService.successNotification("Congratulation!! Your account has been created successfuly.")
 
         }, (error: ErrorModel) => {
             this.alertService.error(error);

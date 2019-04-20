@@ -15,3 +15,26 @@
 .label-error-message{
     color: red !important;
 }
+
+.pending-task, .completed-task {
+    display: flex;
+
+    a.task-link{
+        flex-grow: 1;
+    }
+}
+
+.category-item{
+    display: flex;
+
+    a.category-link{
+        flex-grow: 1;
+    }
+}
+
+.text-ellipsis
+{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

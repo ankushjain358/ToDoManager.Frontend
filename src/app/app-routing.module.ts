@@ -27,9 +27,10 @@ const routes: Routes = [
       { path: '', redirectTo: 'category', pathMatch: 'full' },
       { path: 'category', component: CategoryComponent },
       { path: 'category/create', component: CreateCategoryComponent },
+      { path: 'category/edit', component: CreateCategoryComponent },
       { path: 'category/detail/:id', component: CategoryDetailComponent },
       { path: 'category/new-task', component: CreateTaskComponent },
-      // { path: 'category/edit-task', component: CreateTaskComponent }
+      { path: 'category/edit-task', component: CreateTaskComponent }
     ]
   }
 ];
