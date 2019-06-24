@@ -12,6 +12,12 @@
 //     border-left: 5px solid #a94442; /* red */
 //   }
 
+//override bootstrap variables
+$primary: #e20074;
+$secondary: #ededed; 
+
+@import "~bootstrap/scss/bootstrap";
+
 .label-error-message{
     color: red !important;
 }
@@ -37,4 +43,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.btn-secondary{
+    color: #4b4b4b;
 }
