@@ -13,7 +13,7 @@ export class AppConstants {
     public static UpdateTaskAPIUrl = AppConstants.ApiBaseUrl + 'api/tasks/update';
     public static UpdateTaskStatusAPIUrl = AppConstants.ApiBaseUrl + 'api/tasks/update-task-status';
     public static DeleteTaskAPIUrl = AppConstants.ApiBaseUrl + 'api/tasks/delete-task';
-   
+
 
     public static LocalStorageKey = {
         User: 'currentUser'
